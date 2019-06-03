@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/MultipleFaceRecognitionApp/static/css/main.34afa450.chunk.css",
+    "main.js": "/MultipleFaceRecognitionApp/static/js/main.9bcd929e.chunk.js",
+    "main.js.map": "/MultipleFaceRecognitionApp/static/js/main.9bcd929e.chunk.js.map",
+    "runtime~main.js": "/MultipleFaceRecognitionApp/static/js/runtime~main.c7041a3d.js",
+    "runtime~main.js.map": "/MultipleFaceRecognitionApp/static/js/runtime~main.c7041a3d.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/MultipleFaceRecognitionApp/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.2e1540a0.chunk.js": "/MultipleFaceRecognitionApp/static/js/2.2e1540a0.chunk.js",
+    "static/js/2.2e1540a0.chunk.js.map": "/MultipleFaceRecognitionApp/static/js/2.2e1540a0.chunk.js.map",
+    "index.html": "/MultipleFaceRecognitionApp/index.html",
+    "precache-manifest.fd7dcd4fc4b244bb091225b8ef4bff37.js": "/MultipleFaceRecognitionApp/precache-manifest.fd7dcd4fc4b244bb091225b8ef4bff37.js",
+    "service-worker.js": "/MultipleFaceRecognitionApp/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/MultipleFaceRecognitionApp/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.34afa450.chunk.css.map": "/MultipleFaceRecognitionApp/static/css/main.34afa450.chunk.css.map"
+  }
+}
