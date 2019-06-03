@@ -1,9 +1,11 @@
 {
+  "homepage":"https://GowriPriya10.github.io/MultipleFaceRecognitionApp",
   "name": "facerecognitionapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "clarifai": "^2.9.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dialog": "^1.0.2",
     "react-dom": "^16.8.6",
@@ -13,6 +15,8 @@
     "tachyons": "^4.11.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
