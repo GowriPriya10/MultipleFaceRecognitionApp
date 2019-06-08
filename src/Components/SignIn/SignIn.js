@@ -6,7 +6,8 @@ constructor(props){
   super(props);
   this.state={
     signInEmail:'',
-    signInPassword:''
+    signInPassword:'',
+    result:''
   }
 }
 
@@ -31,9 +32,9 @@ onSubmitSignIn=()=>{
     if(user.id){
       this.props.loadUser(user);
       this.props.onRouteChange('home');
-
-    }else{
-      
+    }
+    else{
+      this.setState({result: 'wrong credentials'})
     }
   })
 }
@@ -41,6 +42,7 @@ onSubmitSignIn=()=>{
 render(){
   const {onRouteChange} =this.props;
     return(
+    <div>
     <article className="br3 shadow-5 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center">
       <main className="pa4 black-80">
         <div className="measure">
@@ -78,6 +80,8 @@ render(){
         </div>
       </main>
     </article>
+    <p className="f3">{this.state.result}</p>
+  </div>
   );
 }
 } 

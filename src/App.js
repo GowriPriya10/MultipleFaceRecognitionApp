@@ -7,6 +7,9 @@ import Rank from './Components/Rank/Rank';
 import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register';
 import Dialog from './Components/Dialog/Dialog.js';
+import Profile from './Components/Profile/Profile.js';
+import ChangePassword from './Components/Profile/ChangePassword.js';
+import Score from './Components/Score/Score';
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition';
 import './App.css';
 
@@ -121,11 +124,51 @@ class App extends Component{
     if(route ==='signout'){
         this.setState(initialState)
     }
+    else if(route === 'profile'){
+        this.setState({isSignedIn: true})
+    }
     else if(route === 'home'){
       this.setState({isSignedIn: true})
     }
     this.setState({route: route});
   }
+
+
+renderSwitch=(route)=>{
+  const {isSignedIn,imageurl,boxes,user} = this.state;
+  switch(route){
+              case 'home':
+                 return <div>
+                    <Logo />
+                    <Rank 
+                    name={this.state.user.name} 
+                    entries={this.state.user.entries} />
+
+                    <ImageLinkForm 
+                    onInputChange={this.onInputChange} 
+                    onButtonSubmit={this.onButtonSubmit}/>
+
+                    <FaceRecognition imageurl={imageurl} boxes= {boxes}/>
+                  </div>
+                break;
+              case 'signIn':
+                    return <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                  break;
+              case 'register':
+                   return <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                  break;
+              case 'profile':
+                    return <Profile  id={user.id} onRouteChange={this.onRouteChange}/>
+                  break;
+              case 'score':
+                    return <Score />
+              case 'changepassword':
+                    return <ChangePassword email={user.email} onRouteChange={this.onRouteChange}/>
+              case 'signout':
+                    return <SignIn/>
+  }
+}
+
 
   render(){
     const {isSignedIn,imageurl,route,boxes} = this.state;
@@ -135,25 +178,7 @@ class App extends Component{
                 params={particlesOptions}
               />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-         {  this.state.route === 'home' ?
-          <div>
-            <Logo />
- 
-            <Rank 
-            name={this.state.user.name} 
-            entries={this.state.user.entries} />
-
-            <ImageLinkForm 
-            onInputChange={this.onInputChange} 
-            onButtonSubmit={this.onButtonSubmit}/>
-
-            <FaceRecognition imageurl={imageurl} boxes= {boxes}/>
-          </div>
-          :( route === 'signIn'?
-            <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-            :<Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-          )
-        }
+        {this.renderSwitch(route)}
       </div>
     );
   }
