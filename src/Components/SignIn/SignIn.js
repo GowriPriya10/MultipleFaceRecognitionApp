@@ -20,7 +20,7 @@ onPasswordChange =(event)=>{
 }
 
 onSubmitSignIn=()=>{
-  fetch('https://warm-ridge-28737.herokuapp.com/signin',{
+  fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/signin`,{
     method: 'post',
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({
@@ -29,7 +29,7 @@ onSubmitSignIn=()=>{
     })
   }).then(response=>response.json())
   .then(user => {
-    if(user.id){
+    if(user._id){
       this.props.loadUser(user);
       this.props.onRouteChange('home');
     }

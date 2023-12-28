@@ -15,7 +15,7 @@ class ProCard extends React.Component{
             <img alt='photo' src={`https://robohash.org/ ${this.props.data.name}/set_set5?size=100x100`} />
             <div style={{display: 'flex'}}>
               <p className="di fw6 f4" htmlFor="ID">ID:</p>
-              <p className="f4">{this.props.data.id}</p>
+              <p className="f4">{this.props.data._id}</p>
             </div>
             <div style={{display: 'flex'}}>
               <p className="di fw6 f4" htmlFor="name">Name:</p>

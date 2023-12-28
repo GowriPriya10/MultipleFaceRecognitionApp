@@ -10,7 +10,7 @@ constructor(props){
 }
 
 componentDidMount(){
-	fetch('https://warm-ridge-28737.herokuapp.com/profile/'+this.props.id)
+	fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/profile/${this.props.id}`)
 	.then(response => response.json())
 	.then(res => {
 		console.log(res);

@@ -3,18 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "clarifai": "^2.9.0",
     "react": "^16.8.6",
-    "react-dialog": "^1.0.2",
     "react-dom": "^16.8.6",
-    "react-particles-js": "^2.6.0",
     "react-scripts": "3.0.1",
     "react-tilt": "^0.1.4",
     "tachyons": "^4.11.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

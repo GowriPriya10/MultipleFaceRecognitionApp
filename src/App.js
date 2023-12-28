@@ -1,37 +1,14 @@
 import React,{Component} from 'react';
-import Particles from 'react-particles-js';
 import Navigation from './Components/Navigation/Navigation';
 import Logo from './Components/Logo/Logo';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
 import Rank from './Components/Rank/Rank';
 import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register';
-import Dialog from './Components/Dialog/Dialog.js';
 import Profile from './Components/Profile/Profile.js';
 import ChangePassword from './Components/Profile/ChangePassword.js';
-import Score from './Components/Score/Score';
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition';
 import './App.css';
-
-const particlesOptions={
-                  particles: {
-                    number: {
-                      value: 200,
-                      density:{
-                        enable: true,
-                        value_area: 1000
-                      }
-                    },
-                    line_linked: {
-                    shadow: {
-                      enable: true,
-                      color: "#3CA9D1",
-                      blur: 5
-                    }
-                  }
-                }
-                  
-                }
 
 const initialState ={
       input: '',
@@ -57,7 +34,7 @@ class App extends Component{
   loadUser =(data)=>{
     this.setState({user: {
         email:data.email,
-        id:data.id,
+        id:data._id,
         name:data.name,
         entries:data.entries,
         joined:data.joined
@@ -90,7 +67,7 @@ class App extends Component{
 
   onButtonSubmit =()=>{
     this.setState({imageurl:this.state.input});
-    fetch('https://warm-ridge-28737.herokuapp.com/imageUrl',{
+    fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/imageUrl`,{
           method:'post',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
@@ -100,7 +77,7 @@ class App extends Component{
     .then(response=>response.json())
     .then(response =>{
       if(response){
-        fetch('https://warm-ridge-28737.herokuapp.com/image',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/image`,{
           method:'put',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
@@ -110,8 +87,8 @@ class App extends Component{
         .then(response=> response.json())
         .then(count =>{
           this.setState(Object.assign(this.state.user,{
-              entries:count
-          }))
+            entries: count.entries
+        }))
         })
         .catch(console.log)
       }
@@ -160,10 +137,8 @@ renderSwitch=(route)=>{
               case 'profile':
                     return <Profile  id={user.id} onRouteChange={this.onRouteChange}/>
                   break;
-              case 'score':
-                    return <Score />
               case 'changepassword':
-                    return <ChangePassword email={user.email} onRouteChange={this.onRouteChange}/>
+                    return <ChangePassword id={user.id} onRouteChange={this.onRouteChange}/>
               case 'signout':
                     return <SignIn/>
   }
@@ -174,9 +149,6 @@ renderSwitch=(route)=>{
     const {isSignedIn,imageurl,route,boxes} = this.state;
     return (
       <div className="App">
-        <Particles className='particles'
-                params={particlesOptions}
-              />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         {this.renderSwitch(route)}
       </div>

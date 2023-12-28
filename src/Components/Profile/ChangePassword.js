@@ -16,19 +16,23 @@ onPasswordChange =(event)=>{
 }
 
 onConfirmPasswordChange =(event)=>{
-  this.setState({confirmPassword: event.target.value})
+  if(event.target.value !== this.state.Password) {
+    this.setState({result: 'Passwords dont match.'})
+  }else {
+    this.setState({result: ''})
+    this.setState({confirmPassword: event.target.value})
+  }
 }
 
 onSubmit=()=>{
-  fetch('https://warm-ridge-28737.herokuapp.com/editpassword',{
+  fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/editpassword`,{
     method: 'put',
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({
-      email:this.props.email,
-      password: this.state.Password,
-      confirmpassword:this.state.confirmPassword
+      id: this.props.id,
+      password: this.state.Password
     })
-  }).then(response=>response.json())
+  }).then(response=>response.text())
   .then(res=>{
     this.setState({result:res})
   })
